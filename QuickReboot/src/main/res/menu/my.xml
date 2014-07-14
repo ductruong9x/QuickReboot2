@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MyActivity" >
+    <item android:id="@+id/more_app"
+        android:title="More App"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/rate"
+        android:title="Rate"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/share"
+        android:title="Share"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
