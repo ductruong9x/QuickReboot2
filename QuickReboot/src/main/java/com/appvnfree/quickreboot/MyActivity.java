@@ -68,9 +68,11 @@ public class MyActivity extends Activity {
             lvReboot.setEnabled(false);
         }
         lvReboot=(ListView)findViewById(R.id.listview);
+
         list.add(new Reboot("Reboot",R.drawable.restart));
         list.add(new Reboot("Reboot Recovery",R.drawable.recovery));
         list.add(new Reboot("Reboot Bootloader",R.drawable.bootloader));
+        list.add(new Reboot("Set time reboot",R.drawable.timereboot));
         list.add(new Reboot("Power off",R.drawable.turnoff));
         adapter=new RebootAdapter(this,R.layout.item_layout,list);
         lvReboot.setAdapter(adapter);
@@ -134,8 +136,14 @@ public class MyActivity extends Activity {
                         }
                         break;
                     case 3:
-                        //power off
-                         os = new DataOutputStream(root
+                        //set time reboot
+                        Intent intent=new Intent(MyActivity.this,TimerReboot.class);
+                        startActivity(intent);
+
+                        break;
+                    case 4:
+                        // Power off
+                        os = new DataOutputStream(root
                                 .getOutputStream());
                         try {
                             os.writeBytes("reboot download\n");
@@ -251,6 +259,10 @@ public class MyActivity extends Activity {
                                 .setData(Uri.parse("market://details?id="
                                         + getPackageName()));
                         startActivity(goToMarket);
+                        SharedPreferences pre = getSharedPreferences("setting", MODE_PRIVATE);
+                        SharedPreferences.Editor edit = pre.edit();
+                        edit.putInt("VOTE",6);
+                        edit.commit();
                     }
                 });
                 dialog.setNeutralButton("Do not show",new DialogInterface.OnClickListener() {
